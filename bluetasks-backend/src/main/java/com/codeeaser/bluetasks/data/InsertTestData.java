@@ -2,6 +2,7 @@ package com.codeeaser.bluetasks.data;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -13,15 +14,17 @@ import com.codeeaser.bluetasks.Domain.user.AppUserRepository;
 
 @Component
 public class InsertTestData {
-    
+
+    @Autowired
     private AppUserRepository appUserRepository;
 
+    @Autowired
     private TaskRepository taskRepository;
 
-    public InsertTestData(AppUserRepository appUserRepository, TaskRepository taskRepository) {
-        this.appUserRepository = appUserRepository;
-        this.taskRepository = taskRepository;
-    }
+//    public InsertTestData(AppUserRepository appUserRepository, TaskRepository taskRepository) {
+//        this.appUserRepository = appUserRepository;
+//        this.taskRepository = taskRepository;
+//    }
 
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -32,8 +35,13 @@ public class InsertTestData {
         LocalDate baseDate = LocalDate.parse("2023-08-15");
 
         for (int i = 0; i <= 10; i++) {
-            Task task = new Task("Tarefa #" + i, baseDate.plusDays(i), false);
+//            Task task = new Task("Tarefa #" + i, baseDate.plusDays(i), false);
+
+            Task task = new Task("" + i, "desc:" + i, "TODO", true);
+
             task.setAppUser(appUser);
+
+//            taskRepository.save(task);
             taskRepository.save(task);
         }
         

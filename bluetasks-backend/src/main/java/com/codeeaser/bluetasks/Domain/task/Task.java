@@ -2,12 +2,7 @@ package com.codeeaser.bluetasks.Domain.task;
 
 import com.codeeaser.bluetasks.Domain.user.AppUser;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "task")
@@ -16,6 +11,9 @@ public class Task {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column
+    private String taskId;
 
     private String description;
 
@@ -28,11 +26,17 @@ public class Task {
     private AppUser appUser;
 
     public Task() {
-
     }
 
     public Task(Long id, String description, String whenToDO, Boolean done) {
         this.id = id;
+        this.description = description;
+        this.whenToDO = whenToDO;
+        this.done = done;
+    }
+
+    public Task(String taskId, String description, String whenToDO, Boolean done) {
+        this.taskId = taskId;
         this.description = description;
         this.whenToDO = whenToDO;
         this.done = done;
@@ -70,5 +74,27 @@ public class Task {
         this.done = done;
     }
 
+    public String getTaskId() {
+        return taskId;
+    }
 
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
 }
