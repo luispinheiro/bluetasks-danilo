@@ -29,7 +29,7 @@ public class AppUser {
     public AppUser() {
 
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -50,7 +50,6 @@ public class AppUser {
         return password;
     }
 
-
     public String getDisplayName() {
         return displayName;
     }
@@ -58,6 +57,4 @@ public class AppUser {
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
-
-    
 }
